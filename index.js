@@ -4,7 +4,7 @@ import cors from 'cors'
 import 'dotenv/config'
 
 import { posts } from './mongoConnect.js'
-import { addPost } from './posts.js'
+import { addPost, deletePost } from './posts.js'
 
 const app = express()
 app.use(cors())
@@ -30,3 +30,5 @@ app.get('/', async (req, res) => {
   const allPosts = await posts.find().toArray()
   res.send(allPosts)
 })
+
+app.delete('/:id', deletePost)
